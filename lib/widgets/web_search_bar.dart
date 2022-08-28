@@ -8,6 +8,10 @@ class WebSearchBar extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.05,
       width: MediaQuery.of(context).size.width * 0.25,
+      decoration: BoxDecoration(),
+      child: Row(
+        children: [],
+      ),
     );
   }
 }
