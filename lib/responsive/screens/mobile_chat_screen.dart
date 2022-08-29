@@ -31,21 +31,66 @@ class MobileChatScreen extends StatelessWidget {
         ],
       ),
       body: Column(
-        children: const [
-          Expanded(
+        children: [
+          const Expanded(
             child: ChatList(),
           ),
-          TextField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: mobileChatBoxColor,
-              prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(
-                  Icons.emoji_emotions,
-                  color: Colors.grey,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.82,
+                  decoration: BoxDecoration(
+                    color: mobileChatBoxColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Icon(
+                                Icons.emoji_emotions,
+                                color: Colors.grey,
+                              ),
+                              hintText: 'Message',
+                              hintStyle: TextStyle(
+                                fontSize: 20,
+                              )),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.attach_file,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                const Spacer(),
+                CircleAvatar(
+                  backgroundColor: tabColor,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.mic,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
             ),
           ),
         ],
