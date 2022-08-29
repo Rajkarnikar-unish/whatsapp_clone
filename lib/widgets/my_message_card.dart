@@ -5,10 +5,10 @@ class MyMessageCard extends StatelessWidget {
   const MyMessageCard({
     Key? key,
     required this.message,
-    required this.date,
+    required this.time,
   }) : super(key: key);
 
-  final String message, date;
+  final String message, time;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MyMessageCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 30, right: 30, top: 5, bottom: 20),
+                    left: 5, right: 30, top: 5, bottom: 20),
                 child: Text(
                   message,
                   style: const TextStyle(
@@ -43,7 +43,7 @@ class MyMessageCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      date,
+                      time,
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.white60,

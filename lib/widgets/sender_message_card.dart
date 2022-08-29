@@ -5,10 +5,10 @@ class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({
     Key? key,
     required this.message,
-    required this.date,
+    required this.time,
   }) : super(key: key);
 
-  final String message, date;
+  final String message, time;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,13 @@ class SenderMessageCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          color: messageColor,
+          color: senderMessageColor,
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Stack(
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 30, right: 30, top: 5, bottom: 20),
+                    left: 5, right: 30, top: 5, bottom: 20),
                 child: Text(
                   message,
                   style: const TextStyle(
@@ -43,7 +43,7 @@ class SenderMessageCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      date,
+                      time,
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.white60,
