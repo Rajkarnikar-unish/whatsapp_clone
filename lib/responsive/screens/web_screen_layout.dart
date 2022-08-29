@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/widgets/contacts_list.dart';
 
+import '../../widgets/chat_list.dart';
+import '../../widgets/web_chat_appbar.dart';
 import '../../widgets/web_profile_bar.dart';
+import '../../widgets/web_search_bar.dart';
 
 class WebScreenLayout extends StatelessWidget {
   const WebScreenLayout({Key? key}) : super(key: key);
@@ -14,9 +17,9 @@ class WebScreenLayout extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: [
+                children: const [
                   WebProfileBar(),
-                  //WebSearch Bar
+                  WebSearchBar(),
                   ContactList(),
                 ],
               ),
@@ -24,7 +27,7 @@ class WebScreenLayout extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.75,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   'assets/backgroundImage.png',
@@ -32,7 +35,15 @@ class WebScreenLayout extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Center(child: Text('THIS IS UNISH')),
+            child: Column(
+              children: [
+                WebChatAppbar(),
+                Expanded(
+                  child: ChatList(),
+                ),
+                //Message Input Box
+              ],
+            ),
           ),
         ],
       ),
