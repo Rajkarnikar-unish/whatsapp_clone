@@ -55,13 +55,14 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout>
               ),
             ),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
+            controller: _tabController,
             indicatorColor: tabColor,
             indicatorWeight: 4,
             labelColor: tabColor,
             unselectedLabelColor: Colors.grey,
-            labelStyle: TextStyle(fontWeight: FontWeight.bold),
-            tabs: [
+            labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            tabs: const [
               Tab(
                 text: 'CHATS',
               ),
