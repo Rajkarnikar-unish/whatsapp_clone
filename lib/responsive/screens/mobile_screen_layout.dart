@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/responsive/screens/mobile_status_screen.dart';
 
 import '../../widgets/contacts_list.dart';
 
-class MobileScreenLayout extends StatelessWidget {
+class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
+
+  @override
+  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+}
+
+class _MobileScreenLayoutState extends State<MobileScreenLayout>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +74,23 @@ class MobileScreenLayout extends StatelessWidget {
             ],
           ),
         ),
-        body: const ContactList(),
+        body: TabBarView(
+          controller: _tabController,
+          children: const [
+            ContactList(),
+            MobileStatusScreen(),
+            ContactList(),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           backgroundColor: tabColor,
-          child: const Icon(
-            Icons.comment,
+          child: Icon(
+            (_tabController.index == 0)
+                ? Icons.comment
+                : (_tabController.index == 1)
+                    ? Icons.camera_alt
+                    : Icons.add_call,
             color: Colors.white,
           ),
         ),
