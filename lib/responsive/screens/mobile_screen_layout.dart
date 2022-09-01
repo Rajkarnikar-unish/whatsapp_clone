@@ -7,6 +7,8 @@ import '../../widgets/contacts_list.dart';
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
 
+  static String routeName = '/mobile-screen-layout';
+
   @override
   State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }

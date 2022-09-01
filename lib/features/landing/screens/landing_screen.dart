@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/common/widgets/custom_button.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
+
+  static String routeName = '/';
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +39,15 @@ class LandingScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: greyColor,
                 ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: sizeMediaQuery.width * 0.75,
+              child: CustomButton(
+                text: 'AGREE AND CONTINUE',
+                onPressed: () => Navigator.pushNamed(context, '/login-screen'),
               ),
             ),
           ],
