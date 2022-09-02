@@ -5,6 +5,7 @@ import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_ui/responsive/responsive_layout.dart';
 import 'package:whatsapp_ui/responsive/screens/mobile_screen_layout.dart';
 import 'package:whatsapp_ui/responsive/screens/web_screen_layout.dart';
+import 'package:whatsapp_ui/router.dart';
 
 import 'features/landing/screens/landing_screen.dart';
 import 'firebase_options.dart';
@@ -29,12 +30,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
       ),
       home: const LandingScreen(),
-      initialRoute: LandingScreen.routeName,
-      routes: {
-        LandingScreen.routeName: (context) => const LandingScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        MobileScreenLayout.routeName: (context) => const MobileScreenLayout(),
-      },
+      // initialRoute: LandingScreen.routeName,
+      onGenerateRoute: (settings) => generateRoute(settings),
       //  const ResponsiveLayout(
       //   mobileLayout: MobileScreenLayout(),
       //   webLayout: WebScreenLayout(),
