@@ -28,6 +28,25 @@ class AuthRepository {
     required this.firestore,
   });
 
+  Future<UserModel?> getCurrentUserData() async {
+    var userData = await firestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser?.uid)
+        .get();
+    UserModel? user;
+
+    if (userData.data() != null) {
+      user = UserModel.fromMap(userData.data()!);
+    }
+    return user;
+    // final user = firebaseAuth.currentUser;
+    // if (user != null) {
+    //   final userData = await firestore.collection('users').doc(user.uid).get();
+    //   return UserModel.fromMap(userData.data()!);
+    // }
+    // return null;
+  }
+
   void signInWithPhoneNumber(BuildContext context, String phoneNumber) async {
     try {
       await firebaseAuth.verifyPhoneNumber(
