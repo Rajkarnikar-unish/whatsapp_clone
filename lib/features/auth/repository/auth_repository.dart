@@ -107,14 +107,17 @@ class AuthRepository {
       if (profilePic != null) {
         String photoURL = await ref
             .read(commonFirebaseStorageRepositoryProvider)
-            .storeFileInFirebase('/profilePic/$uid', profilePic);
+            .storeFileInFirebase(
+              '/profilePic/$uid',
+              profilePic,
+            );
       }
       var user = UserModel(
         name: name,
         uid: uid,
         profilePic: photoURL,
         isOnline: true,
-        phoneNumber: firebaseAuth.currentUser!.uid,
+        phoneNumber: firebaseAuth.currentUser!.phoneNumber!,
         groupId: [],
       );
 
