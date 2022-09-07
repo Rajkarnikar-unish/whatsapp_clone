@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/common/utils/utils.dart';
-import 'package:whatsapp_ui/responsive/screens/mobile_chat_screen.dart';
+import 'package:whatsapp_ui/features/chat/screens/mobile_chat_screen.dart';
 
 import '../../../models/user_model.dart';
 
@@ -45,7 +45,10 @@ class SelectContactRepository {
         if (selectedPhoneNumber == userData.phoneNumber) {
           isFound = true;
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, MobileChatScreen.routeName);
+          Navigator.pushNamed(context, MobileChatScreen.routeName, arguments: {
+            'name': userData.name,
+            'uid': userData.uid,
+          });
         }
         print(isFound);
       }

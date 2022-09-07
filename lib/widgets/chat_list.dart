@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_ui/widgets/my_message_card.dart';
-import 'package:whatsapp_ui/widgets/sender_message_card.dart';
+import 'package:whatsapp_ui/widgets/widgets.dart';
 
 import '../info.dart';
 

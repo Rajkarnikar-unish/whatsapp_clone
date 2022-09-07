@@ -4,15 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/colors.dart';
 import 'package:whatsapp_ui/common/widgets/error_widget.dart';
 import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
-import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
-import 'package:whatsapp_ui/responsive/responsive_layout.dart';
 import 'package:whatsapp_ui/responsive/screens/mobile_screen_layout.dart';
-import 'package:whatsapp_ui/responsive/screens/web_screen_layout.dart';
 import 'package:whatsapp_ui/router.dart';
-import 'package:whatsapp_ui/widgets/loader.dart';
 
 import 'features/landing/screens/landing_screen.dart';
 import 'firebase_options.dart';
+import 'widgets/widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

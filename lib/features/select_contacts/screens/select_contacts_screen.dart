@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/features/select_contacts/controller/select_contact_controller.dart';
-import 'package:whatsapp_ui/widgets/loader.dart';
+import 'package:whatsapp_ui/widgets/widgets.dart';
 
-import '../../../colors.dart';
 import '../../../common/widgets/error_widget.dart';
 
 class SelectContactsScreen extends ConsumerWidget {

@@ -3,7 +3,7 @@ import 'package:whatsapp_ui/colors.dart';
 import 'package:whatsapp_ui/responsive/screens/mobile_status_screen.dart';
 
 import '../../features/select_contacts/screens/select_contacts_screen.dart';
-import '../../widgets/contacts_list.dart';
+import '../../widgets/widgets.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
