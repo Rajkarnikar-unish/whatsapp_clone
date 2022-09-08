@@ -64,7 +64,7 @@ class ChatRepository {
         .collection('chats')
         .doc(receiverUserId)
         .set(
-          recieverChatContact.toMap(),
+          senderChatContact.toMap(),
         );
   }
 

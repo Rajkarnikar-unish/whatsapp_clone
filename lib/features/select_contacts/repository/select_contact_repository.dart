@@ -39,20 +39,27 @@ class SelectContactRepository {
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
         String selectedPhoneNumber =
-            selectedContact.phones[0].number.replaceAll(' ', '');
-        print(userData.phoneNumber);
+            selectedContact.phones[0].number.replaceAll(
+          ' ',
+          '',
+        );
 
-        if (selectedPhoneNumber == userData.phoneNumber) {
+        String finalSelectedContact = selectedPhoneNumber.replaceAll('-', '');
+        if (finalSelectedContact == userData.phoneNumber) {
           isFound = true;
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, MobileChatScreen.routeName, arguments: {
-            'name': userData.name,
-            'uid': userData.uid,
-          });
+          Navigator.pushNamed(
+            context,
+            MobileChatScreen.routeName,
+            arguments: {
+              'name': userData.name,
+              'uid': userData.uid,
+            },
+          );
         }
-        print(isFound);
+        print(selectedContact.phones[0].number.replaceAll('-', ''));
       }
-      // print(selectedContact.phones[0].number.replaceAll(' ', ''));
+
       if (!isFound) {
         showSnackBar(
           context: context,

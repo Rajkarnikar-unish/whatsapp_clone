@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../colors.dart';
+import '../controller/chat_controller.dart';
 
-class BottomChatField extends StatefulWidget {
-  BottomChatField({
+class BottomChatField extends ConsumerStatefulWidget {
+  const BottomChatField({
+    required this.receiverUserId,
     Key? key,
   }) : super(key: key);
 
+  final String receiverUserId;
+
   @override
-  State<BottomChatField> createState() => _BottomChatFieldState();
+  ConsumerState<BottomChatField> createState() => _BottomChatFieldState();
 }
 
-class _BottomChatFieldState extends State<BottomChatField> {
-  final messageController = TextEditingController();
+class _BottomChatFieldState extends ConsumerState<BottomChatField> {
+  final _messageController = TextEditingController();
   bool showSendButton = false;
+
+  void sendTextMessage() async {
+    if (showSendButton) {
+      ref.read(chatControllerProvider).sendTextMessage(
+            context,
+            _messageController.text.trim(),
+            widget.receiverUserId,
+          );
+    }
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +53,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
               children: [
                 Expanded(
                   child: TextFormField(
-                    controller: messageController,
+                    controller: _messageController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       prefixIcon: Icon(
@@ -78,13 +99,13 @@ class _BottomChatFieldState extends State<BottomChatField> {
           CircleAvatar(
             backgroundColor: tabColor,
             radius: 25,
-            child: IconButton(
-              icon: Icon(
+            child: GestureDetector(
+              onTap: sendTextMessage,
+              child: Icon(
                 // Icons.send,
                 showSendButton ? Icons.send : Icons.mic,
                 color: Colors.white,
               ),
-              onPressed: () {},
             ),
           ),
         ],
