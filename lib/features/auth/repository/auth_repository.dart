@@ -105,7 +105,7 @@ class AuthRepository {
           'https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=740&t=st=1662413246~exp=1662413846~hmac=a6180c9b0ee423d8ef5c4e9f55716484987a39be80d21ae6c451f231fbeb802a';
 
       if (profilePic != null) {
-        String photoURL = await ref
+        photoURL = await ref
             .read(commonFirebaseStorageRepositoryProvider)
             .storeFileInFirebase(
               '/profilePic/$uid',
@@ -137,5 +137,14 @@ class AuthRepository {
             event.data()!,
           ),
         );
+  }
+
+  void setUserState(bool isOnline) async {
+    await firestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .update({
+      'isOnline': isOnline,
+    });
   }
 }

@@ -1,30 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 import 'package:whatsapp_ui/responsive/screens/mobile_status_screen.dart';
 
 import '../../features/select_contacts/screens/select_contacts_screen.dart';
 import '../../widgets/widgets.dart';
 
-class MobileScreenLayout extends StatefulWidget {
+class MobileScreenLayout extends ConsumerStatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
 
   static const String routeName = '/mobile-screen-layout';
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  ConsumerState<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout>
-    with TickerProviderStateMixin {
+class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   late TabController _tabController;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.paused:
+        ref.read(authControllerProvider).setUserState(false);
+        break;
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _tabController = TabController(
       length: 3,
       vsync: this,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
