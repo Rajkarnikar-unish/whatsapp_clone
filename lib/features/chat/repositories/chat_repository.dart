@@ -216,7 +216,7 @@ class ChatRepository {
   }) async {
     try {
       var timeSent = DateTime.now();
-      final messageId = const Uuid.v1();
+      final messageId = const Uuid().v1();
 
       String imageUrl = await ref
           .read(commonFirebaseStorageRepositoryProvider)
@@ -236,10 +236,37 @@ class ChatRepository {
       switch (messageEnum) {
         case MessageEnum.image:
           contactMsg = '📸 Photo';
+          break;
+        case MessageEnum.video:
+          contactMsg = '📸 Video';
+          break;
+        case MessageEnum.audio:
+          contactMsg = '🎵 Audio';
+          break;
+        case MessageEnum.gif:
+          contactMsg = 'GIF';
+          break;
+        default:
+          contactMsg = 'GIF';
       }
 
       _saveDataToContactsSubcollection(
-          senderUserData, receiverUserData, imageUrl, timeSent, receiverUserId);
+        senderUserData,
+        receiverUserData,
+        contactMsg,
+        timeSent,
+        receiverUserId,
+      );
+
+      _saveMessageToMessageSubcollection(
+        receiverUserId: receiverUserId,
+        text: imageUrl,
+        timeSent: timeSent,
+        messageId: messageId,
+        username: senderUserData.name,
+        receiverUsername: receiverUserData.name,
+        messageType: messageEnum,
+      );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }
