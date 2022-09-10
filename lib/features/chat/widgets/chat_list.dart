@@ -8,6 +8,7 @@ import 'package:whatsapp_ui/models/message.dart';
 import 'package:whatsapp_ui/widgets/widgets.dart';
 
 import '../../../info.dart';
+import 'widgets.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   const ChatList({
@@ -53,6 +54,7 @@ class _ChatListState extends ConsumerState<ChatList> {
               return MyMessageCard(
                 message: messageData.text,
                 time: timeSent,
+                type: messageData.type,
               );
             }
             return SenderMessageCard(

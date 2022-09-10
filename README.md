@@ -1,6 +1,6 @@
 # whatsapp_ui
 
-A Clone Project of the popular chatting application whatsapp. Timestamp --> 05:25:05.
+A Clone Project of the popular chatting application whatsapp. Timestamp --> 05:36:22.
 
 # Things to add
 
