@@ -5,3 +5,4 @@ export 'contacts_list.dart';
 export 'sender_message_card.dart';
 export 'display_text_image_file.dart';
 export 'video_player_item.dart';
+export 'display_text_image_file.dart';
